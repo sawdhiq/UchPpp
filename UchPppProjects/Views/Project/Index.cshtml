@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Project>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="container p-3">
+    <div class=row pt-2>
+        <div class="col-6">
+            <h2 class="text-primary"></h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Project" asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> &nbsp; Add New Project </a>
+            </div>
+        </div>
+
+    
+
+
+
+<h1 style="text-align:center; font-size: large; padding-bottom: 5px;">EXPIRATION DATES FOR ALL PPP PROJECTS</h1>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr style="text-align:center;">
+           
+            <th>
+                NAMES OF PROJECTS
+            </th>
+            <th>
+                LOCATION OF PROJECTS
+            </th>
+            <th>
+                EXPIRATION DATES OF PROJECTS
+            </th>
+            <th>
+                ACTIONS
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                 <td width="30%">
+                    @obj.ProjectName
+                </td>
+                 <td width="30%">
+                    @obj.ProjectLocation
+                </td>
+                 <td width="50%">
+                    @obj.ExpirationDate
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a class="btn btn-primary" style="width: 150px;" asp-controller="Project" asp-action="Edit" asp-route-id="@obj.Id">
+                            <i class="bi bi-pencil-square"></i>&nbsp;Edit</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-danger" style="width: 170px;" asp-controller="Project" asp-action="Delete" asp-route-id="@obj.Id">
+                            <i class="bi bi-trash-fill"></i>&nbsp; Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
