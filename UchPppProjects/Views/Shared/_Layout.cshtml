@@ -22,10 +22,13 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link"  asp-controller="Home" asp-action="Index">Home</a>
+          <a class="nav-link" asp-area="Customer"  asp-controller="Home" asp-action="Index">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  asp-controller="Project" asp-action="Index">PPP Projects</a>
+          <a class="nav-link" asp-area="Admin"  asp-controller="Project" asp-action="Index">PPP Projects</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" asp-area="Admin"  asp-controller="CoverType" asp-action="Index">CoverTypes</a>
         </li>
        
         @*<li class="nav-item dropdown">
@@ -73,7 +76,7 @@
         </main>
     </div>
 
-    <footer class=" footer text-muted bg-primary position-fixed">
+    <footer class=" footer text-muted bg-primary position-relative">
         <div class="container">
             &copy; 2022 - Information Technology Department
         </div>

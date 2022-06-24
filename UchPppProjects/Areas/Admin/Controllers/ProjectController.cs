@@ -3,20 +3,21 @@ using MailKit.Net.Smtp;
 using MimeKit;
 using UchPpp.DataAccess;
 using UchPpp.Models;
+using UchPpp.DataAccess.Repository.Irepository;
 
 namespace UchPppProjects.Controllers
 {
     public class ProjectController : Controller
     {
-        private readonly PppDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ProjectController(PppDbContext db)
+        public ProjectController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            IEnumerable<Project> objProjectList = _db.Projects;
+            IEnumerable<Project> objProjectList = _unitOfWork.Project.GetAll();
              return View(objProjectList);
         }
         //GET
@@ -33,8 +34,8 @@ namespace UchPppProjects.Controllers
             
             if (ModelState.IsValid)
             {
-                _db.Projects.Add(obj);
-                _db.SaveChanges();
+                _unitOfWork.Project.Add(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Project Added Successfully";
                 return RedirectToAction("Index");
             }
@@ -49,16 +50,16 @@ namespace UchPppProjects.Controllers
             {
                 return NotFound();
             }
-            var projectFromDb = _db.Projects.Find(id);
-            //var projectFromDbFirst = _db.Projects.FirstOrDefault(u=>u.Id==id);
+            //var projectFromDb = _db.Projects.Find(id);
+            var projectFromDbFirst = _unitOfWork.Project.GetFirstOrDefault(u=>u.Id==id);
            // var projectFromDbFirstSingle = _db.Projects.SingleOrDefault(u => u.Id == id);
 
-            if(projectFromDb==null)
+            if(projectFromDbFirst==null)
             {
                 return NotFound();
             }
 
-            return View(projectFromDb);
+            return View(projectFromDbFirst);
         }
         //POST
         [HttpPost]
@@ -68,8 +69,8 @@ namespace UchPppProjects.Controllers
 
             if (ModelState.IsValid)
             {
-                _db.Projects.Update(obj);
-                _db.SaveChanges();
+                _unitOfWork.Project.Update(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Project Updated Successfully";
                 return RedirectToAction("Index");
             }
@@ -85,7 +86,7 @@ namespace UchPppProjects.Controllers
                 return NotFound();
             }
             //var projectFromDb = _db.Projects.Find(id);
-            var projectFromDbFirst = _db.Projects.FirstOrDefault(u=>u.ProjectName=="id");
+            var projectFromDbFirst = _unitOfWork.Project.GetFirstOrDefault(u=>u.Id == id);
             // var projectFromDbFirstSingle = _db.Projects.SingleOrDefault(u => u.Id == id);
 
             if (projectFromDbFirst == null)
@@ -100,15 +101,15 @@ namespace UchPppProjects.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _db.Projects.Find(id);
+            var obj = _unitOfWork.Project.GetFirstOrDefault(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
            
             
-                _db.Projects.Remove(obj);
-                _db.SaveChanges();
+                _unitOfWork.Project.Remove(obj);
+                _unitOfWork.Save();
             TempData["success"] = "Project Deleted Successfully";
             return RedirectToAction("Index");
 

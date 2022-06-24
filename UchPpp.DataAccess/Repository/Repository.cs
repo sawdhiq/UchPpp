@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -32,18 +33,18 @@ namespace UchPpp.DataAccess.Repository
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
         {
             IQueryable<T> query = dbSet;
-            query = query.where(filter);
+            query = query.Where(filter);
             return query.FirstOrDefault();
         }
 
         public void Remove(T entity)
         {
-            dbSet = Remove(entity);
+            dbSet.Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<T> entity)
         {
-            dbSet= RemoveRange(entity);
+            dbSet.RemoveRange(entity);
         }
     }
 }

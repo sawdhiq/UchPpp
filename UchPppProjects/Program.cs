@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using UchPpp.DataAccess;
+using UchPpp.DataAccess.Repository;
+using UchPpp.DataAccess.Repository.Irepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<PppDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
  
 
 var app = builder.Build();
@@ -29,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

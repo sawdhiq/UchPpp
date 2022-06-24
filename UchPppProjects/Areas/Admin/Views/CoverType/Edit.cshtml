@@ -1,0 +1,31 @@
+﻿@model UchPpp.Models.CoverType
+
+<form method="post" asp-action="Edit">
+    <div class="container align-items-center">
+    <div class="border p-3 mt-4 w-75 m-auto">
+        <div class="row pb-2">
+            <h4 class=""><i class="bi bi-pencil-fill"></i> &nbsp; Edit CoverType</h4>
+            <hr/>
+        </div>
+       
+        <div class="mb-3 w-100">
+            <i class="bi bi-person-circle"></i>&nbsp;<label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control"/>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+         
+
+        <button type="submit" class="btn btn-primary" style="width:170px"><i class="bi bi-pencil-fill"></i> &nbsp; Update</button>
+       &nbsp;&nbsp; <a asp-controller="Project" asp-action="Index" class="btn btn-secondary" style="width:170px"><i class="bi bi-arrow-left-circle-fill"></i> &nbsp; Back to List</a>
+    </div>
+    </div>
+
+</form>
+@section Scripts
+{
+    @{
+ <partial name="_ValidationScriptsPartial" />
+
+}
+}
+
