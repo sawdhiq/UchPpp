@@ -15,9 +15,12 @@ namespace UchPpp.DataAccess.Repository
             _db = db;
             Project = new ProjectRepository(_db);
             CoverType = new CoverTypeRepository(_db);
+            Product = new ProductRepository(_db);
         }
         public IProjectRepository Project { get; private set; }
         public ICoverTypeRepository CoverType { get; private set; }
+        public IProductRepository Product { get; private set; }
+
 
         public void Save()
         {

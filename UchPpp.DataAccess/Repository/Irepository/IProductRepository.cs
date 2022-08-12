@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UchPpp.Models;
 
 namespace UchPpp.DataAccess.Repository.Irepository
 {
-    public interface IUnitOfWork
+    public interface IProductRepository : IRepository<Product>
     {
-        IProjectRepository Project { get; }
-        ICoverTypeRepository CoverType { get; }
-        IProductRepository Product { get; }
+        void Update(Product obj);
         void Save();
     }
 }

@@ -22,25 +22,16 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" asp-area="Customer"  asp-controller="Home" asp-action="Index">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" asp-area="Admin"  asp-controller="Project" asp-action="Index">PPP Projects</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" asp-area="Admin"  asp-controller="CoverType" asp-action="Index">CoverTypes</a>
-        </li>
-       
-        @*<li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+           <a class="nav-link" asp-area="Customer"  asp-controller="Home" asp-action="Index">Home</a>
+        </li>    
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content Management</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
+          <a class="dropdown-item" asp-area="Admin"  asp-controller="Project" asp-action="Index">PPP Projects</a>
+            <a class="dropdown-item" asp-area="Admin"  asp-controller="CoverType" asp-action="Index">CoverTypes</a>
+             <a class="dropdown-item" asp-area="Admin"  asp-controller="Product" asp-action="Index">Product</a>
           </div>
-        </li>*@
+        </li>
       </ul>
       @*<form class="d-flex">
         <input class="form-control me-sm-2" type="text" placeholder="Search">
@@ -76,11 +67,11 @@
         </main>
     </div>
 
-    <footer class=" footer text-muted bg-primary position-relative">
+   @* <footer class=" footer text-muted bg-primary position-fixed">
         <div class="container">
             &copy; 2022 - Information Technology Department
         </div>
-    </footer>
+    </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
